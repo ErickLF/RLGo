@@ -9,7 +9,7 @@ import(
 
 const(
 	goal = 100
-	ph = 0.55
+	ph = 0.4
 	gamma =1-ph
 	theta = 0.0000000001
 )
@@ -27,9 +27,9 @@ func main (){
 	gambler.value_iteration()
 	
 	
-	fmt.Println(gambler.states)
-	fmt.Println()
-	fmt.Println(gambler.policys)
+	//fmt.Println(gambler.states)
+	//fmt.Println()
+	//fmt.Println(gambler.policys)
 	
 	gambler.file()
 }
@@ -80,8 +80,8 @@ func(g*gambler) file(){
 
     w := bufio.NewWriter(file)
 	
-	for i:=0;i<len(g.states)-1;i++{
-    	fmt.Fprintf(w,"%f \t %f \n", g.states[i],g.policys[i])
+	for i:=1;i<len(g.states);i++{
+    	fmt.Fprintf(w,"%v \t %e \n", i, g.states[i])
 	}
 	
     w.Flush()
