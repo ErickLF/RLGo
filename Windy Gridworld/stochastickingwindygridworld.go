@@ -123,11 +123,11 @@ func (ql* Sarsa) Move(x,y,action int) (float64,int,int){
    }
     qy+= ql.wind[x]
     rana:=random.float64
-    if rana < (1.0/3.0){
+    if rana < (1.0/3.0){ //a third of the time you move a cell above that
         qy+=1
-    }elif rana < (2.0/3.0){
+    }elif rana < (2.0/3.0){ //a third of the time you move one cell bellow that
         qy-=1
-    }else{
+    }else{ //a third of the time the wind doesnt blow
         qy-=ql.wind[x]
     }
     
