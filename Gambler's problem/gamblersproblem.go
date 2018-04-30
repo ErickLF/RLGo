@@ -9,7 +9,7 @@ import(
 
 const(
 	goal = 100
-	ph = 0.4
+	ph = 0.55
 	gamma =1-ph
 	theta = 0.0000000001
 )
@@ -27,11 +27,8 @@ func main (){
 	gambler.value_iteration()
 	
 	
-	//fmt.Println(gambler.states)
-	//fmt.Println()
-	//fmt.Println(gambler.policys)
-	
 	gambler.file()
+	gambler.fileP()
 }
 
 func (g *gambler) value_iteration(){
@@ -82,6 +79,23 @@ func(g*gambler) file(){
 	
 	for i:=1;i<len(g.states);i++{
     	fmt.Fprintf(w,"%v \t %e \n", i, g.states[i])
+	}
+	
+    w.Flush()
+}
+
+func(g*gambler) fileP(){
+	file, err := os.OpenFile("outputP.txt", os.O_WRONLY|os.O_CREATE, 0644)
+    if err != nil {
+        fmt.Println("File does not exists or cannot be created")
+        os.Exit(1)
+    }
+    defer file.Close()
+
+    w := bufio.NewWriter(file)
+	
+	for i:=1;i<len(g.states);i++{
+    	fmt.Fprintf(w,"%v \t %e \n", i,g.policys[i])
 	}
 	
     w.Flush()
